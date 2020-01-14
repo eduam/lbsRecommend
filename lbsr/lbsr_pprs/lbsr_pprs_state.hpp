@@ -27,7 +27,7 @@ namespace lbsr_pprs
 /**
  * @brief Enumeration for state of PPRS.
  */
-enum StateId_t : uint64_t
+enum StateId_t : int32_t
 {
     kStateNil = 0,
     kStateInit = 1,
@@ -62,7 +62,7 @@ struct StateInit : public stdsc::State
               bool is_generated_occurrence = false,
               bool is_received_pubkey = false);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateInit;
     }
@@ -82,7 +82,7 @@ struct StateConnected : public stdsc::State
     StateConnected(bool is_generated_occurrence = false,
                    bool is_received_pubkey = false);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateConnected;
     }
@@ -100,7 +100,7 @@ struct StateReady : public stdsc::State
     static std::shared_ptr<stdsc::State> create();
     StateReady(void);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateReady;
     }
@@ -118,7 +118,7 @@ struct StateComputed : public stdsc::State
     static std::shared_ptr<State> create();
     StateComputed(void);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateComputed;
     }
@@ -136,7 +136,7 @@ struct StateExit : public stdsc::State
     static std::shared_ptr<State> create();
     StateExit(void);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateExit;
     }

@@ -40,7 +40,7 @@ public:
                stdsc::StateContext& state);
     ~PprsThread(void) = default;
 
-    void start(void);
+    void start(bool async);
     void join(void);
 
 private:

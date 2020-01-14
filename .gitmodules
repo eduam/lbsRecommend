@@ -1,3 +1,4 @@
 [submodule "stdsc"]
 	path = stdsc
-	url = https://github.com/yamanalab/stdsc.git
+	url = https://github.com/iihiro/stdsc.git
+	branch = dev-v2.0.0

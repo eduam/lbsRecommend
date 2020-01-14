@@ -83,7 +83,7 @@ void create_psp_server(lbsr_pprs::CallbackParam& param,
     callback.set(lbsr_share::kControlCodeRequestCompute, cb_compute);
 
     lbsr_pprs::PprsThread server(port, callback, state);
-    server.start();
+    server.start(true);
     server.join();
 }
 

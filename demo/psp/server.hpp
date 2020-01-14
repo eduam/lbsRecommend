@@ -68,9 +68,9 @@ struct Server
 
     ~Server(void) = default;
 
-    void start(void)
+    void start(bool async)
     {
-        psp_->start();
+        psp_->start(async);
     }
 
     void join(void)

@@ -29,7 +29,7 @@ namespace lbsr_psp
 /**
  * @brief Enumeration for state of PSP.
  */
-enum StateId_t : uint64_t
+enum StateId_t : int32_t
 {
     kStateNil = 0,
     kStateInit = 1,
@@ -60,7 +60,7 @@ struct StateInit : public stdsc::State
     static std::shared_ptr<State> create(size_t initial_connection_count = 0);
     StateInit(size_t initial_connection_count = 0);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateInit;
     }
@@ -83,7 +83,7 @@ struct StateConnected : public stdsc::State
     StateConnected(bool is_received_location_info = false,
                    bool is_received_recomm_list = false);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateConnected;
     }
@@ -101,7 +101,7 @@ struct StateDecryptedRecommList : public stdsc::State
     static std::shared_ptr<State> create();
     StateDecryptedRecommList(void);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateDecryptedRecommList;
     }
@@ -119,7 +119,7 @@ struct StateComputed : public stdsc::State
     static std::shared_ptr<State> create();
     StateComputed(void);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateComputed;
     }
@@ -137,7 +137,7 @@ struct StateExit : public stdsc::State
     static std::shared_ptr<State> create();
     StateExit(void);
     virtual void set(stdsc::StateContext &sc, uint64_t event) override;
-    virtual uint64_t id(void) const override
+    virtual int32_t id(void) const override
     {
         return kStateExit;
     }

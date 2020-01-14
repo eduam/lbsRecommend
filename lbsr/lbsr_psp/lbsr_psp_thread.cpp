@@ -32,9 +32,9 @@ struct PSPThread::Impl
     Impl(const char* port, stdsc::CallbackFunctionContainer& callback,
          stdsc::StateContext& state, lbsr_share::SecureKeyFileManager& skm,
          bool is_generate_securekey = false)
-      : server_(new stdsc::Server<>(port, state)), state_(state), skm_(skm)
+      : server_(new stdsc::Server<>(port, state, callback)), state_(state), skm_(skm)
     {
-        server_->set_callback(callback);
+        //server_->set_callback(callback);
         STDSC_LOG_INFO("Lanched PSP server (%s)", port);
 
         if (is_generate_securekey) {
@@ -44,7 +44,7 @@ struct PSPThread::Impl
 
     ~Impl(void) = default;
 
-    void start(void)
+    void start(bool async)
     {
         if (!skm_.is_exist_pubkey())
         {
@@ -61,12 +61,12 @@ struct PSPThread::Impl
             STDSC_THROW_FILE(oss.str());
         }
 
-        server_->start();
+        server_->start(async);
     }
 
     void join(void)
     {
-        server_->wait_for_finish();
+        server_->wait();
     }
 
 private:
@@ -84,9 +84,9 @@ PSPThread::PSPThread(const char* port,
 {
 }
 
-void PSPThread::start(void)
+void PSPThread::start(bool async)
 {
-    pimpl_->start();
+    pimpl_->start(async);
 }
 
 void PSPThread::join(void)

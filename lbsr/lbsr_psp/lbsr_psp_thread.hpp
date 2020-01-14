@@ -47,7 +47,7 @@ public:
               bool is_generate_securekey = false);
     ~PSPThread(void) = default;
 
-    void start(void);
+    void start(bool async);
     void join(void);
 
 private:

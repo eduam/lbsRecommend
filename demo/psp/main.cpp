@@ -78,9 +78,9 @@ void exec(const Param& param)
     lbsr_demo::Server server_for_user(cb_param, state, PSP_PORT_FOR_USER,
                                       param.is_generate_securekey);
     lbsr_demo::Server server_for_pprs(cb_param, state, PSP_PORT_FOR_PPRS);
-    
-    server_for_user.start();
-    server_for_pprs.start();
+
+    server_for_user.start(true);
+    server_for_pprs.start(true);
 
     server_for_user.join();
     server_for_pprs.join();
